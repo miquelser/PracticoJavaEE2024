@@ -1,0 +1,9 @@
+org\example\singleton\HechosLocal.class
+org\example\singleton\HechosSingleton.class
+org\example\singleton\HechosRemote.class
+org\example\verificandoUyRemote.class
+org\example\verificandoUy.class
+org\example\models\Calificacion.class
+org\example\verificandoUyLocal.class
+org\example\models\HechosModel.class
+org\example\models\Estado.class

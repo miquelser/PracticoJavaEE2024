@@ -1,0 +1,4 @@
+org\example\servlets\BuscarHechosServlet.class
+org\example\servlets\AgregarHechoServlet.class
+org\example\servlets\EliminarHechoServlet.class
+org\example\servlets\ListarHechosServlet.class
