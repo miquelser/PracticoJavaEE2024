@@ -15,7 +15,9 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -23,6 +25,7 @@
         <artifactId>practicoJavaEE</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
+
     <artifactId>practicoJavaEE-web</artifactId>
     <packaging>war</packaging>
     <name>practicoJavaEE - web</name>
@@ -30,46 +33,45 @@
 
     <dependencies>
 
-        <!-- Import the CDI API, we use provided scope as the API is included in WildFly / JBoss EAP -->
+        <!-- CDI API -->
         <dependency>
             <groupId>jakarta.enterprise</groupId>
             <artifactId>jakarta.enterprise.cdi-api</artifactId>
             <scope>provided</scope>
         </dependency>
 
-        <!-- Bean Validation Implementation
-           Provides portable constraints such as @Email
-           Hibernate Validator is shipped in WildFly / JBoss EAP -->
+        <!-- Hibernate Validator for Bean Validation -->
         <dependency>
             <groupId>org.hibernate.validator</groupId>
             <artifactId>hibernate-validator</artifactId>
             <scope>provided</scope>
         </dependency>
 
-        <!-- Import the JPA API, we use provided scope as the API is included in WildFly / JBoss EAP -->
+        <!-- JPA API -->
         <dependency>
             <groupId>jakarta.persistence</groupId>
             <artifactId>jakarta.persistence-api</artifactId>
             <scope>provided</scope>
         </dependency>
 
-        <!-- Dependency on the EJB module so we can use it's services if needed -->
+        <!-- EJB Module Dependency -->
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>practicoJavaEE-ejb</artifactId>
+            <version>${project.version}</version>
             <type>ejb</type>
             <scope>provided</scope>
         </dependency>
 
-        <!-- Import the JSF API, we use provided scope as the API is included in WildFly / JBoss EAP -->
-       		 <dependency>
-            <groupId>jakarta.faces</groupId>
-            <artifactId>jakarta.faces-api</artifactId>
-            <scope>provided</scope>
-            
-        </dependency>
+        <!-- Jakarta Faces API (JSF) -->
+       <dependency>
+    <groupId>javax.faces</groupId>
+    <artifactId>javax.faces-api</artifactId>
+    <version>2.3</version>
+    <scope>provided</scope>
+</dependency>
 
-        <!-- Import the JAX-RS API, we use provided scope as the API is included in WildFly / JBoss EAP -->
+        <!-- JAX-RS API -->
         <dependency>
             <groupId>jakarta.ws.rs</groupId>
             <artifactId>jakarta.ws.rs-api</artifactId>
@@ -83,76 +85,53 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- Import the EJB API, we use provided scope as the API is included in WildFly / JBoss EAP -->
+        <!-- EJB API -->
         <dependency>
             <groupId>jakarta.ejb</groupId>
             <artifactId>jakarta.ejb-api</artifactId>
             <scope>provided</scope>
         </dependency>
-        <!-- Required for e.g. "javax.annotation.PostConstruct" -->
+
+        <!-- Annotation API (for @PostConstruct) -->
         <dependency>
             <groupId>jakarta.annotation</groupId>
             <artifactId>jakarta.annotation-api</artifactId>
             <scope>provided</scope>
         </dependency>
 
-        <!-- Test scope dependencies -->
+        <!-- Test Dependencies -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <scope>test</scope>
         </dependency>
 
-        <!-- Optional, but highly recommended -->
-        <!-- Arquillian allows you to test enterprise code such as EJBs and
-            Transactional(JTA) JPA from JUnit/TestNG -->
+        <!-- Arquillian for Testing -->
         <dependency>
             <groupId>org.jboss.arquillian.junit5</groupId>
             <artifactId>arquillian-junit5-container</artifactId>
             <scope>test</scope>
         </dependency>
-        
+
+        <!-- PrimeFaces for UI components -->
         <dependency>
-			<groupId>org.primefaces</groupId>
-			<artifactId>primefaces</artifactId>
-			<version>12.0.0</version> 
-		</dependency>
-		
-		<dependency>
-		    <groupId>${project.groupId}</groupId>
-		    <artifactId>practicoJavaEE-ejb</artifactId>
-		    <version>${project.version}</version>
-		    <type>ejb</type>
-		    <scope>provided</scope>
-		</dependency>
+            <groupId>org.primefaces</groupId>
+            <artifactId>primefaces</artifactId>
+            <version>12.0.0</version>
+        </dependency>
 
-
-
-		<dependency>
-			<groupId>TallerAplicacionesJavaEE</groupId>
-			<artifactId>practicoJavaEE-ejb</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>TallerAplicacionesJavaEE</groupId>
-			<artifactId>practicoJavaEE</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
     </dependencies>
 
     <build>
-        <!-- Tell Maven that the resulting file should not have a file name containing the version -
-             a non versioned name is required e.g. when building a deployable artifact using the ShrinkWrap API -->
         <finalName>${project.artifactId}</finalName>
 
         <plugins>
-            <!--Build configuration for the WAR plugin: -->
+            <!-- Maven WAR Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
-                <version>${version.war.plugin}</version>
+                <version>3.2.2</version>
                 <configuration>
-                    <!-- Jakarta EE doesn't require web.xml, Maven needs to catch up! -->
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>

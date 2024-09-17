@@ -35,13 +35,11 @@ public class AgregarHechoServlet extends HttpServlet {
         Calificacion calificacion;
 
         try {
-            // Parse fecha
+           
             fecha = formatter.parse(fechaStr);
-
-            // Convertir a enum Calificacion
+            
             calificacion = Calificacion.valueOf(calificacionStr);
-
-            // El número se autogenera en el bean
+          
             verificandoUy.agregarHecho(fecha, descripcion, calificacion);
 
             response.setContentType("text/html");
@@ -52,8 +50,7 @@ public class AgregarHechoServlet extends HttpServlet {
             out.println("<p>Redirigiendo a la página de agregar en 2 segundos...</p>");
             out.println("</body></html>");
             out.close();
-        } catch (IllegalArgumentException e) {
-            // Manejo de errores específicos para Calificacion
+        } catch (IllegalArgumentException e) {            
             response.setContentType("text/html");
             response.setHeader("Refresh", "2;url=agregar.jsp");
             PrintWriter out = response.getWriter();
@@ -62,8 +59,7 @@ public class AgregarHechoServlet extends HttpServlet {
             out.println("<p>Redirigiendo a la página de agregar en 2 segundos...</p>");
             out.println("</body></html>");
             out.close();
-        } catch (ParseException e) {
-            // Manejo de errores de formato de fecha
+        } catch (ParseException e) {            
             response.setContentType("text/html");
             response.setHeader("Refresh", "2;url=agregar.jsp");
             PrintWriter out = response.getWriter();
@@ -72,8 +68,7 @@ public class AgregarHechoServlet extends HttpServlet {
             out.println("<p>Redirigiendo a la página de agregar en 2 segundos...</p>");
             out.println("</body></html>");
             out.close();
-        } catch (Exception e) {
-            // Manejo de errores generales
+        } catch (Exception e) {            
             response.setContentType("text/html");
             response.setHeader("Refresh", "2;url=agregar.jsp");
             PrintWriter out = response.getWriter();

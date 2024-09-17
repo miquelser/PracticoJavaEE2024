@@ -7,10 +7,7 @@
 </head>
 <body>
     <h1>Agregar Hecho</h1>
-    <form action="agregar-hecho" method="post">
-        <!-- Número ya no es necesario -->
-        <!-- <label for="numero">Número:</label>
-        <input type="number" id="numero" name="numero" required />
+    <form action="agregar-hecho" method="post">       
         <br/> -->
         <label for="descripcion">Descripción:</label>
         <input type="text" id="descripcion" name="descripcion" required />
